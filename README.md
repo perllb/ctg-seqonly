@@ -62,29 +62,29 @@ HELP          -h : print help message
 Illumina IEM. The Bold/Italic field below must be correct!
 
 [Header]
-IEMFileVersion,5
-Investigator Name,X
-Experiment Name,X
-Date,YYYY-MM-DD
-Workflow,GenerateFASTQ
-Application,NovaSeq FASTQ Only
-Instrument Type,NovaSeq
-Assay,Nextera XT
-Index Adapters,"Nextera XT v2 Index Kit A"
-Chemistry,Amplicon
-
-[Reads]
-***26***
-***78***
-
-[Settings]
-Adapter,***CTGTCTCTTATACACATCT***
-
-[Data]
-Sample_ID,Sample_Name,Sample_Plate,Sample_Well,I7_Index_ID,index,I5_Index_ID,index2,Sample_Project,Description
-***S1***,***S1***,,,N702,***CGTACTAG***,,,,
-***S2***,***S2***,,,N706,***TAGGCATG***,,,,
-
-
-### Container
-https://github.com/perllb/ctg-seqonly/tree/main/container
+IEMFileVersion,5  
+Investigator Name,X  
+Experiment Name,X  
+Date,YYYY-MM-DD  
+Workflow,GenerateFASTQ  
+Application,NovaSeq FASTQ Only  
+Instrument Type,NovaSeq  
+Assay,Nextera XT  
+Index Adapters,"Nextera XT v2 Index Kit A"  
+Chemistry,Amplicon  
+  
+[Reads]  
+***26***  
+***78***  
+  
+[Settings]  
+Adapter,***CTGTCTCTTATACACATCT***  
+  
+[Data]  
+Sample_ID,Sample_Name,Sample_Plate,Sample_Well,I7_Index_ID,index,I5_Index_ID,index2,Sample_Project,Description  
+***S1***,***S1***,,,N702,***CGTACTAG***,,,,  
+***S2***,***S2***,,,N706,***TAGGCATG***,,,,  
+  
+  
+### Container  
+https://github.com/perllb/ctg-seqonly/tree/main/container  
