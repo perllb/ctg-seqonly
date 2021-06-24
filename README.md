@@ -13,10 +13,10 @@ nohup nextflow run pipe-seqonly-qc.nf > log.pipe-seqonly-qc.txt &
 ```
 
 ## Run with Driver
-.. 1-3 from above
-4. Edit the driver folder declaration to fit your system
-5. Add cloned git repo folder to your system PATH
-6. Start driver from runfolder
+.. 1-3 from above  
+4. Edit the driver folder declaration to fit your system  
+5. Add cloned git repo folder to your system PATH  
+6. Start driver from runfolder  
 
 ```
 seqonly-driver 
