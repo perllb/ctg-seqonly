@@ -14,7 +14,7 @@
 
 # Set folders
 # Project folder - where the pipeline will run, and all metadata, pipeline, config, samplesheet and temporary files are written and stored
-ctgproj="/fs1/shared/ctg-projects/seqonly/"
+ctgproj="/projects/fs1/shared/ctg-projects/seqonly/"
 # CTG pipeline - the raw nextflow pipeline with config.
 ctgpipe="/projects/fs1/shared/ctg-pipelines/ctg-seqonly/"
 
