@@ -4,18 +4,18 @@ Nextflow + Singularity
 
 ## USAGE
 
-1. Clone and build the Singularity container for this pipeline: https://github.com/perllb/ctg-seqonly/tree/main/container
+1. Clone and build the Singularity container for this pipeline: https://github.com/perllb/ctg-seqonly/tree/main/container. Add the path to the .sif in the nextflow.config `container = ` parameter under process{}
 2. Edit your samplesheet to match the example samplesheet. See section `SampleSheet` below
 3. Edit the nextflow.config file to fit your project and system. 
 4. Run pipeline (from runfolder)
 ```
-nohup nextflow run pipe-sc-adt-rna-10x.nf > log.pipe-sc-adt-rna-10x.txt &
+nohup nextflow run pipe-seqonly-qc.nf > log.pipe-seqonly-qc.txt &
 ```
 
 ## Run with Driver
-.. from above
+.. 1-3 from above
 4. Edit the driver folder declaration to fit your system
-5. Add cloned repo folder to system PATH
+5. Add cloned git repo folder to your system PATH
 6. Start driver from runfolder
 
 ```
