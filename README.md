@@ -61,6 +61,10 @@ HELP          -h : print help message
 
 Illumina IEM. The Bold/Italic field below must be correct!
 
+!! NOTE: 
+- `Sample_Name` does not have to be included in sheet.
+- If it is included it MUST be identical to`Sample_ID`
+
 [Header]
 IEMFileVersion,5  
 Investigator Name,X  
