@@ -2,6 +2,51 @@
 Demux + QC of NGS Illumina run
 Nextflow + Singularity
 
+
+## Input files
+
+
+The following files must be in the runfolder to start pipeline successfully.
+
+1. Samplesheet (CTG_SampleSheet.seqonly.csv)
+
+### Samplesheet requirements:
+
+!! NOTE: 
+- `Sample_Name` does not have to be included in sheet - better to exclude. If it is included it MUST be identical to`Sample_ID`
+
+### Samplesheet template 
+
+Illumina IEM. The Bold/Italic field below must be correct! Other fields not in bold does not have to be changed for the pipeline to work, but can be changed if wanted.
+
+
+```
+[Header]
+IEMFileVersion,5  
+Investigator Name,X  
+Experiment Name,X  
+Date,YYYY-MM-DD  
+Workflow,GenerateFASTQ  
+Application,NovaSeq FASTQ Only  
+Instrument Type,NovaSeq  
+Assay,Nextera XT  
+Index Adapters,"Nextera XT v2 Index Kit A"  
+Chemistry,Amplicon  
+  
+[Reads]  
+***26***  
+***78***  
+  
+[Settings]  
+Adapter,***CTGTCTCTTATACACATCT***  
+AdapterRead2,***CTGTCTCTTATACACATCT***  
+[Data]  
+Sample_ID,Sample_Name,Sample_Plate,Sample_Well,I7_Index_ID,index,I5_Index_ID,index2,Sample_Project,Description  
+***S1***,***S1***,,,***N702***,***CGTACTAG***,,,***2021_024***,  
+***S2***,***S2***,,,***N706***,***TAGGCATG***,,,***2021_024***,  
+ ``` 
+ 
+  
 ## USAGE
 
 1. Clone and build the Singularity container for this pipeline: https://github.com/perllb/ctg-seqonly/tree/main/container. Add the path to the .sif in the nextflow.config `container = ` parameter under process{}
@@ -37,10 +82,6 @@ DEMUX-OFF     -d : Set flag to skip bcl2fastq (then fastq must be in FQDIR)
 HELP          -h : print help message
 ```
 
-## Input
-
-- Samplesheet (see `SampleSheet` section below)
-
 ### Pipeline steps:
 
 * `Demultiplexing` (bcl2fastq): Converts raw basecalls to fastq, and demultiplex samples based on index (https://support.illumina.com/content/dam/illumina-support/documents/documentation/software_documentation/bcl2fastq/bcl2fastq2-v2-20-software-guide-15051736-03.pdf).
@@ -57,38 +98,6 @@ HELP          -h : print help message
     * `fastq`: Contains raw fastq files from cellranger mkfastq.
     
 
-### Samplesheet requirements:
-
-Illumina IEM. The Bold/Italic field below must be correct!
-
-!! NOTE: 
-- `Sample_Name` does not have to be included in sheet.
-- If it is included it MUST be identical to`Sample_ID`
-
-[Header]
-IEMFileVersion,5  
-Investigator Name,X  
-Experiment Name,X  
-Date,YYYY-MM-DD  
-Workflow,GenerateFASTQ  
-Application,NovaSeq FASTQ Only  
-Instrument Type,NovaSeq  
-Assay,Nextera XT  
-Index Adapters,"Nextera XT v2 Index Kit A"  
-Chemistry,Amplicon  
-  
-[Reads]  
-***26***  
-***78***  
-  
-[Settings]  
-Adapter,***CTGTCTCTTATACACATCT***  
-  
-[Data]  
-Sample_ID,Sample_Name,Sample_Plate,Sample_Well,I7_Index_ID,index,I5_Index_ID,index2,Sample_Project,Description  
-***S1***,***S1***,,,***N702***,***CGTACTAG***,,,2021_024,  
-***S2***,***S2***,,,***N706***,***TAGGCATG***,,,2021_024,  
-  
   
 ### Container  
 https://github.com/perllb/ctg-seqonly/tree/main/container  
