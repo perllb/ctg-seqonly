@@ -1,6 +1,8 @@
 # ctg-seqonly
-Demux + QC of NGS Illumina run
-Nextflow + Singularity
+
+The ctg-seqonly pipeline performs demultiplexing and QC of NGS Illumina runs
+
+Based on Nextflow + Singularity
 
 
 ## Input files
@@ -20,7 +22,6 @@ The following files must be in the runfolder to start pipeline successfully.
 Illumina IEM. The Bold/Italic field below must be correct! Other fields not in bold does not have to be changed for the pipeline to work, but can be changed if wanted.
 
 
-```
 [Header]
 IEMFileVersion,5  
 Investigator Name,X  
@@ -44,7 +45,7 @@ AdapterRead2,***CTGTCTCTTATACACATCT***
 Sample_ID,Sample_Name,Sample_Plate,Sample_Well,I7_Index_ID,index,I5_Index_ID,index2,Sample_Project,Description  
 ***S1***,***S1***,,,***N702***,***CGTACTAG***,,,***2021_024***,  
 ***S2***,***S2***,,,***N706***,***TAGGCATG***,,,***2021_024***,  
- ``` 
+
  
   
 ## USAGE
