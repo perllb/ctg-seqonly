@@ -17,10 +17,7 @@ The following files must be in the runfolder to start pipeline successfully.
 !! NOTE: 
 - `Sample_Name` does not have to be included in sheet - better to exclude. If it is included it MUST be identical to`Sample_ID`
 
-### Samplesheet template 
-
-Illumina IEM. The Bold/Italic field below must be correct! Other fields not in bold does not have to be changed for the pipeline to work, but can be changed if wanted.
-
+Illumina IEM based. The Bold/Italic field below must be correct! Other fields not in bold does not have to be changed for the pipeline to work, but can be changed if wanted.
 
 [Header]
 IEMFileVersion,5  
@@ -47,7 +44,35 @@ Sample_ID,Sample_Name,Sample_Plate,Sample_Well,I7_Index_ID,index,I5_Index_ID,ind
 ***S2***,***S2***,,,***N706***,***TAGGCATG***,,,***2021_024***,  
 
  
+ 
+### Samplesheet template 
+
+
+```
+[Header]
+IEMFileVersion,5  
+Investigator Name,X  
+Experiment Name,X  
+Date,YYYY-MM-DD  
+Workflow,GenerateFASTQ  
+Application,NovaSeq FASTQ Only  
+Instrument Type,NovaSeq  
+Assay,Nextera XT  
+Index Adapters,"Nextera XT v2 Index Kit A"  
+Chemistry,Amplicon  
   
+[Reads]  
+26  
+78  
+  
+[Settings]  
+Adapter,CTGTCTCTTATACACATCT
+AdapterRead2,CTGTCTCTTATACACATCT
+[Data]  
+Sample_ID,Sample_Name,Sample_Plate,Sample_Well,I7_Index_ID,index,I5_Index_ID,index2,Sample_Project,Description  
+S1,S1,,,N702,CGTACTAG,,,2021_024,  
+S2,S2,,,N706,TAGGCATG,,,2021_024,  
+```
 ## USAGE
 
 1. Clone and build the Singularity container for this pipeline: https://github.com/perllb/ctg-seqonly/tree/main/container. Add the path to the .sif in the nextflow.config `container = ` parameter under process{}
