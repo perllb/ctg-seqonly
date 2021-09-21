@@ -64,35 +64,11 @@ Channel
 println " > Samples to process: "
 infoSamples.subscribe{ println "Sample: $it" }
 
-// ctg-interop
-process interop {
-
-	input:
-	val sheet
-
-	output:
-	val "x" into multiqc_interop
-
-	"""
-	cd $runfolder
-	
-	id='ctg_interop_${seq}'
-
-	mkdir -p $runfolder/ctg-interop
-
-	interop_summary $runfolder --csv=1 > $runfolder/ctg-interop/interop_summary
-	interop_index-summary $runfolder --csv=1 > $runfolder/ctg-interop/interop_index-summary
-
-	multiqc -f $runfolder/ctg-interop -n $runfolder/ctg-interop/multiqc_\${id}
-
-	cp -r $runfolder/ctg-interop/multiqc_ctg_interop* /projects/fs1/shared/ctg-qc/interop/
-
-
-	"""
-}
 
 // bcl2fastq
 process bcl2fastq {
+
+    tag "$metaID"
 
     input:
     val sheet 
@@ -120,6 +96,8 @@ process bcl2fastq {
 
 // fastqc 
 process fastqc {
+
+	tag "${sid}-${projid}"
 
 	input:
 	val y from fastqc_go
@@ -154,8 +132,9 @@ process fastqc {
 
 process multiqc {
 
+    tag "$metaID"
+
     input:
-    val x from multiqc_interop.collect()
     val y from multiqc_fastqc.collect()
 
     """
@@ -172,6 +151,8 @@ process multiqc {
 }
 
 process md5sum_fastq {
+
+    tag "$metaID"
 
     input:
     val x from md5_ch

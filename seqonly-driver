@@ -69,11 +69,23 @@ done
 ## Check arguments
 shift "$(( OPTIND -1 ))"
 
-# Check meta-ID
+# Check samplesheet
+if [ -z $sheet ]; then
+    echo ""; echo "> WARNING! No samplesheet specified"
+    sheet="CTG_SampleSheet.seqonly.csv"
+    echo "- Using '${sheet}'"
+    if [ ! -f $sheet ]; then
+	echo "> Error: ${sheet} does not exist (in current dir)"
+	echo "- Please specify correct samplesheet, or create a $sheet in current runfolder"
+	exit_abnormal
+    fi
+fi
+
+# Check meta-id - assign project number if not specified
 if [ -z $id ]; then
-    echo ""; echo "> WARNING! No meta-ID specified"
-    metaid=$(echo $sequencing | cut -f1 -d"_")
-    id="${metaid}-seqonly"
+    echo "> No meta-ID specified"
+    metaid=$(grep "ProjectID" $sheet | cut -f2 -d",")
+    id="${metaid}"
     echo "- Using: '${id}'"
 fi
 
@@ -91,18 +103,6 @@ if [ "$resume" == "n" ] && [ -d $ctgproj/$id ]; then
 	exit_abnormal
     else
 	rm -r $ctgproj/$id/*
-    fi
-fi
-
-# Check samplesheet
-if [ -z $sheet ]; then
-    echo ""; echo "> WARNING! No samplesheet specified"
-    sheet="CTG_SampleSheet.seqonly.csv"
-    echo "- Using '${sheet}'"
-    if [ ! -f $sheet ]; then
-	echo "> Error: CTG_SampleSheet.seqonly.csv does not exist (in current dir)"
-	echo "- Please specify correct samplesheet, or create a CTG_SampleSheet.seqonly.csv in current runfolder"
-	exit_abnormal
     fi
 fi
 
