@@ -22,7 +22,7 @@ The following files must be in the runfolder to start pipeline successfully.
 Illumina IEM based. The Bold/Italic field below must be correct! Other fields not in bold does not have to be changed for the pipeline to work, but can be changed if wanted.
 
 [Header]         
-***ProjectID,2021_0XX,***
+***ProjectID,2021_0XX,***     
 IEMFileVersion,5  
 Investigator Name,X  
 Experiment Name,X  
