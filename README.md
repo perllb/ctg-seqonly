@@ -19,8 +19,8 @@ The following files must be in the runfolder to start pipeline successfully.
 
 - `ProjectID` has to be added (somewhere in the samplesheet above [Data]). The driver will use grep 'ProjectID' from the samplesheet, and take the value after the comma (`metaid=$(grep "ProjectID" $sheet | cut -f2 -d"," | tr -d '\n\r')`). So it has to be of the format "ProjectID,2021_0XX".
 
-- `Adapter Settings` can be omitted.
-- `Reads` Settings can also be omitted.
+- `Adapter` under  `[Settings]` can be omitted.
+- `[Reads]` Settings can also be omitted.
 
 Illumina IEM based. The Bold/Italic field below must be correct! Other fields not in bold does not have to be changed for the pipeline to work, but can be changed if wanted.
 
