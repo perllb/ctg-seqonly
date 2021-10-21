@@ -17,12 +17,15 @@ The following files must be in the runfolder to start pipeline successfully.
 !! NOTE: 
 - `Sample_Name` does not have to be included in sheet - better to exclude. If it is included it MUST be identical to`Sample_ID`
 
-- `ProjectID` has to be added (somewhere in the samplesheet above [Data]). The driver will use grep 'ProjectID' from the samplesheet, and take the value after the comma (`grep ProjectID $sheet | cut -f2 -d","`). So it has to be of the format "ProjectID,2021_0XX,".
+- `ProjectID` has to be added (somewhere in the samplesheet above [Data]). The driver will use grep 'ProjectID' from the samplesheet, and take the value after the comma (`metaid=$(grep "ProjectID" $sheet | cut -f2 -d"," | tr -d '\n\r')`). So it has to be of the format "ProjectID,2021_0XX".
+
+- `Adapter Settings` can be omitted.
+- `Reads` Settings can also be omitted.
 
 Illumina IEM based. The Bold/Italic field below must be correct! Other fields not in bold does not have to be changed for the pipeline to work, but can be changed if wanted.
 
 [Header]         
-***ProjectID,2021_0XX,***     
+***ProjectID,2021_0XX***     
 IEMFileVersion,5  
 Investigator Name,X  
 Experiment Name,X  
@@ -53,7 +56,7 @@ Sample_ID,Sample_Name,Sample_Plate,Sample_Well,I7_Index_ID,index,I5_Index_ID,ind
 
 ```
 [Header]
-ProjectID,2021_0XX,
+ProjectID,2021_0XX
 IEMFileVersion,5  
 Investigator Name,X  
 Experiment Name,X  
