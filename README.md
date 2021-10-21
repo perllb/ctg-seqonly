@@ -44,6 +44,7 @@ Chemistry,Amplicon
 [Settings]  
 Adapter,***CTGTCTCTTATACACATCT***  
 AdapterRead2,***CTGTCTCTTATACACATCT***  
+
 [Data]  
 Sample_ID,Sample_Name,Sample_Plate,Sample_Well,I7_Index_ID,index,I5_Index_ID,index2,Sample_Project,Description  
 ***S1***,***S1***,,,***N702***,***CGTACTAG***,,,***2021_024***,  
