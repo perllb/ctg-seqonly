@@ -14,18 +14,27 @@ The following files must be in the runfolder to start pipeline successfully.
 
 ### Samplesheet requirements:
 
-!! NOTE: 
-- `Sample_Name` does not have to be included in sheet - better to exclude. If it is included it MUST be identical to`Sample_ID`
-
+#### There are a couple of fields in the header (fields above [Data]) of the sheet that are used in the pipeline:
+**CTG-specific parameters**
 - `ProjectID` has to be added (somewhere in the samplesheet above [Data]). The driver will use grep 'ProjectID' from the samplesheet, and take the value after the comma (`metaid=$(grep "ProjectID" $sheet | cut -f2 -d"," | tr -d '\n\r')`). So it has to be of the format "ProjectID,2021_0XX".
+- `email` has to be added to create ctg-delivery.info.csv file - if `autodeliver` is set to 'y', this email adress will receive the mail. 
+- `autodeliver` has to be set to 'y' if automatic delivery (sync to lfs603) and delivery-email should be sent as final step in pipeline. If not, set to any other value.
 
-- `Adapter` under  `[Settings]` can be omitted.
-- `[Reads]` Settings can also be omitted.
+**Illumina parameters**
+- `Adapter` under  `[Settings]` can be omitted. But for adapter trimming during demultiplexing, they have to be included.
+- `[Reads]` under `[Settings]`.
+
+#### [Data] table mainly follows the standard format:
+
+**!! NOTE:**
+- `Sample_Name` does not have to be included in sheet - better to exclude. If it is included it MUST be identical to`Sample_ID`
 
 Illumina IEM based. The Bold/Italic field below must be correct! Other fields not in bold does not have to be changed for the pipeline to work, but can be changed if wanted.
 
 [Header]         
 ***ProjectID,2021_0XX***     
+***email,customer@med.lu.se***
+***autodeliver,y***
 IEMFileVersion,5  
 Investigator Name,X  
 Experiment Name,X  
@@ -57,7 +66,9 @@ Sample_ID,Sample_Name,Sample_Plate,Sample_Well,I7_Index_ID,index,I5_Index_ID,ind
 
 ```
 [Header]
-ProjectID,2021_0XX
+**ProjectID,2021_0XX
+**email,customer@med.lu.se
+**autodeliver,y
 IEMFileVersion,5  
 Investigator Name,X  
 Experiment Name,X  
@@ -78,8 +89,8 @@ Adapter,CTGTCTCTTATACACATCT
 AdapterRead2,CTGTCTCTTATACACATCT
 [Data]  
 Sample_ID,Sample_Name,Sample_Plate,Sample_Well,I7_Index_ID,index,I5_Index_ID,index2,Sample_Project,Description  
-S1,S1,,,N702,CGTACTAG,,,2021_024,  
-S2,S2,,,N706,TAGGCATG,,,2021_024,  
+S1,,,,N702,CGTACTAG,,,2021_024,  
+S2,,,,N706,TAGGCATG,,,2021_024,  
 ```
 ## USAGE
 
@@ -121,6 +132,7 @@ HELP          -h : print help message
 * `Demultiplexing` (bcl2fastq): Converts raw basecalls to fastq, and demultiplex samples based on index (https://support.illumina.com/content/dam/illumina-support/documents/documentation/software_documentation/bcl2fastq/bcl2fastq2-v2-20-software-guide-15051736-03.pdf).
 * `FastQC`: FastQC calculates quality metrics on raw sequencing reads (https://www.bioinformatics.babraham.ac.uk/projects/fastqc/). MultiQC summarizes FastQC reports into one document (https://multiqc.info/).
 * `multiQC`: Compile fastQC and cellranger count metrics in multiqc report (https://multiqc.info/)
+* `deliver auto`: Automatic delivery: Transfers output folder to lfs603 (to auto-generated user and passwd), generates email with download instructions and pipeline description to customer `email` (as specified in samplesheet header). 
 * `md5sum`: md5sum of all fastq files
 
 
